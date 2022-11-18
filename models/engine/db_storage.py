@@ -80,7 +80,13 @@ class DBStorage:
         Returns the object based on the class and its ID, or
         None if not found
         """
-        pass
+        objects = self.all()
+        search = cls.__name__ + "." + id
+        for k, obj in objects.items():
+            key = obj.__class__.__name__ + "." + obj.id
+            if key == search:
+                return obj
+        return None
 
     def count(self, cls=None):
         """
@@ -88,4 +94,11 @@ class DBStorage:
         given class. If no class is passed, returns the count of
         all objects in storage.
         """
-        pass
+        objects = self.all()
+        n_objects = 0
+        if cls is not None:
+            for k, obj in objects.items():
+                if obj.__class__ == cls:
+                    n_objects += 1
+            return n_objects
+        return len(objects)
