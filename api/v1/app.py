@@ -19,7 +19,7 @@ def teardown_app(exception):
 @app.errorhandler(404)
 def route_not_found(e):
     """returns a JSON-formatted 404 status code response"""
-    return jsonify({"error": "Not found"})
+    return jsonify({"error": "Not found"}), 404
 
 
 if __name__ == "__main__":
