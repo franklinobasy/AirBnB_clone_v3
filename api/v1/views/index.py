@@ -15,13 +15,13 @@ classes = {
 }
 
 
-@app_views.route("/status")
+@app_views.route("/status", strict_slashes=False)
 def index():
     """Endpoint to return status of the api"""
     return jsonify({"status": "OK"})
 
 
-@app_views.route("/stats")
+@app_views.route("/stats", strict_slashes=False)
 def stats():
     """An endpoint that retrieves the number of each objects by type"""
     stats = {}
