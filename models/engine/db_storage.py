@@ -80,6 +80,8 @@ class DBStorage:
         Returns the object based on the class and its ID, or
         None if not found
         """
+        if isinstance(cls, str):
+            cls = eval(cls)
         objects = self.all()
         search = cls.__name__ + "." + id
         for k, obj in objects.items():
@@ -97,6 +99,8 @@ class DBStorage:
         objects = self.all()
         n_objects = 0
         if cls is not None:
+            if isinstance(cls, str):
+                cls = eval(cls)
             for k, obj in objects.items():
                 if obj.__class__ == cls:
                     n_objects += 1
