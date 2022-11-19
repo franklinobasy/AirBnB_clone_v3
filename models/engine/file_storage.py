@@ -74,6 +74,8 @@ class FileStorage:
         Returns the object based on the class and its ID, or
         None if not found
         """
+        if isinstance(cls, str):
+            cls = eval(cls)
         search = cls.__name__ + "." + id
         for k, obj in self.__objects.items():
             key = obj.__class__.__name__ + "." + obj.id
@@ -89,6 +91,8 @@ class FileStorage:
         """
         n_objects = 0
         if cls is not None:
+            if isinstance(cls, str):
+                cls = eval(cls)
             for k, obj in self.__objects.items():
                 if obj.__class__ == cls:
                     n_objects += 1
