@@ -19,7 +19,7 @@ def get_places(city_id):
         abort(404)
 
     if request.method == "GET":
-        places = [place.to_dict() for place in city_object.cities]
+        places = [place.to_dict() for place in city_object.cities.values()]
         return jsonify(places)
 
     elif request.method == "POST":
