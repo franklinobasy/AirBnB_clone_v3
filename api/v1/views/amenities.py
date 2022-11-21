@@ -29,6 +29,8 @@ def get_amenities():
         storage.new(amenity_obj)
         storage.save()
 
+        return jsonify(amenity_obj.to_dict()), 201
+
 
 @app_views.route('/amenities/<amenity_id>',
                  methods=['GET', 'DELETE', 'PUT'],
@@ -52,7 +54,7 @@ def get_amenity_id(amenity_id):
             abort(400, description="Not a JSON")
 
         amenity_json = request.get_json()
-        not_needed = ["id", "created_at", "updated_at", "state_id"]
+        not_needed = ["id", "created_at", "updated_at"]
         for attr, attr_value in amenity_json.items():
             if attr not in not_needed:
                 setattr(amenity_obj, attr, attr_value)
