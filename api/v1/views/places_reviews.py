@@ -39,8 +39,8 @@ def get_reviews(place_id):
             abort(404)
 
         review_obj = Review(user_id=review_json["user_id"],
-                          place_id=place_id,
-                          **review_json)
+                            place_id=place_id,
+                            **review_json)
         storage.new(review_obj)
         storage.save()
 
