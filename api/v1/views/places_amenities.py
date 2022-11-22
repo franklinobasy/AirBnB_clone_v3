@@ -15,11 +15,11 @@ storage_type = getenv('HBNB_TYPE_STORAGE')
 def get_amenity_list(place_id):
     """ list of an objetc in dict form
     """
-    
     places = storage.all('Place')
     for key, place_obj in places.items():
         if place_obj.id == place_id:
-            amenity_list = [amenity.to_dict() for amenity in place_obj.amenities]
+            amenities = place_obj.amenities
+            amenity_list = [amenity.to_dict() for amenity in amenities]
             return (jsonify(amenity_list))
     abort(404)
 
