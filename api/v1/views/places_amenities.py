@@ -48,7 +48,6 @@ def delete_amenity(place_id, amenity_id):
 def create_amenity(place_id, amenity_id):
     """ create an amenity of a city
     """
-    amenity_list = []
     place_obj = storage.get("Place", place_id)
     amenity_obj = storage.get("Amenity", amenity_id)
     if not amenity_obj or not place_obj:
